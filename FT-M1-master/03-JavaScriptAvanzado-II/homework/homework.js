@@ -68,15 +68,22 @@ otra vez cálculos que ya se hicieron anteriormente.
 
 function cacheFunction(cb) {
   var obj = {}
-  return function(arg){
-    if(obj.hasOwnProperty(arg)){
-      return obj[arg];
-    }
-    else {
-      obj[arg] = cb(arg)
-    return obj[arg];
+  return function(arg){           //retorna otra funcion por ser closure
+    if(obj.hasOwnProperty(arg)){  //si existe arg en obj (memoria caché) se hace lo siguiente:
+      return obj[arg];            //retorna el obj (memoria caché) con su respectivo clave : valor.
+    } 
+    else {                        //si no existe:
+      obj[arg] = cb(arg)          //a obj (memoria caché) le estoy agregando una propiedad arg y tambien el valor, el cual va a ser el resultado de invocar a call back (cb) con ese arg
+    return obj[arg];              //retorna el obj (memoria caché) con la clave : valor agregada previamente.
     }
   }
+  /* forma simplificada:
+  var obj = {};
+  return function(arg){
+  if(!obj.hasOwnProperty(arg)) obj[arg] = cb(arg);
+  return obj[arg];
+  };
+  */
 }
 
 
@@ -95,7 +102,7 @@ var alumno = {
 };
 
 function getNombre() {
-  return this.nombre;
+  return this.nombre;          //Me piden retornar el valor de la clave nombre de cualquiera de los 2 objetos dados
 }
 
 /*
@@ -105,9 +112,9 @@ function getNombre() {
    actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor = getNombre.bind(instructor);
+let getNombreInstructor = getNombre.bind(instructor); //con .bind se está asociando el this con el objeto instructor
 
-let getNombreAlumno = getNombre.bind(alumno);
+let getNombreAlumno = getNombre.bind(alumno);         //con .bind se está asociando el this con el objeto alumno
 
 //---------------inicio de área de pruebas---------------
 console.log(instructor.nombre)
@@ -129,7 +136,7 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind(this,'*', '*', 'la cadena de texto');
+let textoAsteriscos = crearCadena.bind(this,'*', '*');
 let textoGuiones = crearCadena.bind(this, '-', '-');
 let textoUnderscore = crearCadena.bind(this, '_', '_');
 

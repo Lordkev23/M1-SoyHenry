@@ -20,9 +20,28 @@ function counter() {
     return resultado;
     }
   }
-  const contador1 = counter();
-  contador1();
 
+  //---------------inicio de área de pruebas---------------
+  const contador1 = counter();
+  console.log(contador1());
+  console.log(contador1());
+  console.log(contador1());
+
+  const contador2 = counter();
+  console.log(contador2());
+  console.log(contador2());
+  console.log(contador1());
+  console.log(contador2());
+
+  let cuentamelo = contador2();
+  console.log(cuentamelo);
+  console.log(cuentamelo);
+  console.log(contador2());
+
+  console.log(counter()())
+  console.log(counter()())
+  console.log(counter()())
+//---------------fin de área de pruebas---------------
 
 
 /* Ejercicio 2
@@ -53,10 +72,13 @@ function cacheFunction(cb) {
     if(obj.hasOwnProperty(arg)){
       return obj[arg];
     }
-    obj[arg] = cb(arg)
+    else {
+      obj[arg] = cb(arg)
     return obj[arg];
+    }
   }
 }
+
 
 //----------------------------------------
 
@@ -84,7 +106,16 @@ function getNombre() {
 */
 
 let getNombreInstructor = getNombre.bind(instructor);
+
 let getNombreAlumno = getNombre.bind(alumno);
+
+//---------------inicio de área de pruebas---------------
+console.log(instructor.nombre)
+console.log(getNombreInstructor())
+
+console.log(alumno.nombre)
+console.log(getNombreAlumno())
+//---------------fin de área de pruebas---------------
 
 /*
   Ejercicio 4
@@ -98,9 +129,17 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind(this,'*', '*');
+let textoAsteriscos = crearCadena.bind(this,'*', '*', 'la cadena de texto');
 let textoGuiones = crearCadena.bind(this, '-', '-');
 let textoUnderscore = crearCadena.bind(this, '_', '_');
+
+//---------------inicio de área de pruebas---------------
+console.log(textoAsteriscos())
+
+console.log(textoGuiones())
+
+console.log(textoUnderscore())
+//---------------fin de área de pruebas---------------
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------

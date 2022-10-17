@@ -54,7 +54,7 @@ console.log(nFibonacci(-1))
 //Una Queue devuelve el primer dato ingresado, apila los demás datos que se ingresen y
 // los va devolviendo por orden de llegada hasta alcanzar el ultimo dato y devolverlo.
 //resuelto con prototype:
-function Queue() { //quiwi
+function Queue() {
    this.cola = [];
 }
 Queue.prototype.enqueue = function(valor){

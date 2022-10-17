@@ -25,15 +25,13 @@ console.log(8 * nFactorial(7))
 
 // EJERCICIO 2
 function nFibonacci(n) {   //n es posicion
-   if(n === 1 || n === 2){
-      return 1;
+   if(n < 0){
+      return 'no hay fibonacci de un numero negativo';
    }
-   else if(n === 0){
-      return 0;
+   if(n === 0 || n === 1){
+      return n;
    }
-   else if(n < 0){
-      return 'no hay negativo';
-   }
+   
     return nFibonacci(n-2) + nFibonacci(n-1); 
 }
 
@@ -55,6 +53,7 @@ console.log(nFibonacci(-1))
 // EJERCICIO 3
 //Una Queue devuelve el primer dato ingresado, apila los demás datos que se ingresen y
 // los va devolviendo por orden de llegada hasta alcanzar el ultimo dato y devolverlo.
+//resuelto con prototype:
 function Queue() { //quiwi
    this.cola = [];
 }
@@ -67,6 +66,23 @@ Queue.prototype.dequeue = function(){
 Queue.prototype.size = function(){
    return this.cola.length;            //nos permite visualizar la longitud de la cola
 }
+
+/*Resuelto como clase:
+Class Queue {
+   constructor(){
+      this.cola = [];
+   }
+   enqueue(valor) {
+      this.cola.push(valor);
+   }
+   dequeue() {
+      return this.cola.shift();
+   }
+   size() {
+      return this.cola.length;
+   }
+}
+*/
 
 //Ejercicio Extra para Pila:
 //Una pila devuelve el ultimo dato ingresado, continua con el anterior a este y
